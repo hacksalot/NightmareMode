@@ -1,0 +1,60 @@
+# known-mods.txt
+# ==============
+#
+# List your mods here along with a difficulty cost, negative or positive.
+# Nightmare Mode will incorporate your mods into its 0-100+ difficulty rating.
+#
+# If the mod makes the game EASIER, either by adding a new building or creature
+# or adjusting the gameplay, you should assign it a *negative* cost. Enabling
+# this mod while playing Nightmare Mode will result in a LOWER overall difficulty
+# rating.
+#
+# If the mod makes the game HARDER, whether by removing key functionality or
+# tweaking existing items and/or systems, you should assign it a positive cost.
+# Enabling this mod while playing Nightmare Mode will result in a HIGHER
+# overall difficulty rating.
+#
+# Quality-of-life mods that don't alter the rules or nouns of the game should
+# be assigned a cost of zero (0).
+
+Achievement Progress = 0
+Better Deselect = 0
+Better Info Cards = 0
+Bigger Building Menu = 0
+Bigger Camera Zoom Out = 0
+Blueprints = 0
+Clean Floors = 0
+Debug Console // by @Ony 👾 = 0
+Debug Console // by @Ony = 0
+Default Building Settings = 0
+Deselect New Materials = 0
+DGSM  - Duplicants Generation Settings Manager // by @Ony 👾 = -25
+DGSM  - Duplicants Generation Settings Manager // by @Ony = -25
+Diseases Restored = 25
+DisplayAllTemps = 0
+Favorites Category = 0
+GasOverlay = 0
+German Translation = 0
+Geyser Average Calculated Output Tooltip = 0
+Infinite Storage = -20,
+Japanese Language Pack = 0
+Lights Out (Darkness Revived) = 50
+Mod Manager = 0
+Mod Updater = 0
+NightmareMode = 0
+Nightmare Mode = 0
+Plan Buildings Without Materials = 0
+Pliers = -3
+Research Queue = 0
+Reset Build Priority = 0
+Show Building Ranges = 0
+Show Industrial Machinery Tag = 0
+Suppress Notifications = 0
+Sweep By Type = 0
+Thai Not Included = 0
+Thermal Tooltips = 0
+Tiny Door = -1
+Traduction Francaise = 0
+Traffic Visualizer = -5
+WGSM  - World Generation Settings Manager // by @Ony 👾 = -25
+WGSM  - World Generation Settings Manager // by @Ony = -25

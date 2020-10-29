@@ -1,0 +1,27 @@
+A "nightmare" game mode for Oxygen Not Included.
+
+Nightmare Mode introduces a new game mode in which difficulty levels are maximized (by default; difficulty levels can be adjusted/lowered) and [b]the ability to load into a previous save game is removed[/b]. Instead, Nightmare Mode maintains a single save file representing the most recent state of your Nightmare colony. Since there’s no ability to load into a previous save, decisions made in Nightmare Mode and the consequences for those decisions are permanent.
+
+[h2]Features[/h2]
+
+All features apply to Nightmare Mode games only and most features can be configured or disabled.
+
+- [b]Introduces a new "Nightmare" game mode[/b]. Find it on the Mode Selection screen when you start a new game.
+
+- [b]Ramps game difficulties up to their maximum[/b] by default. Difficulty levels can be adjusted / lowered, if desired, prior to launching a Nightmare Mode colony.
+
+- [b]Enforces permadeath and discourages save scumming[/b] (by default) for Nightmare Mode games. If you make a mistake in a Nightmare Mode game, it's permanent.
+
+- [b]Maintains a single save game[/b] representing the most-recent state of your Nightmare Mode colony, preventing easy reloading of earlier saves ("save scumming").
+
+- [b]Hides previous save game versions on the Load screen[/b], preventing easy reloading of earlier saves ("save scumming"). For Nightmare Mode colonies only.
+
+- [b]Performs a background autosave[/b] when a duplicant dies or is threatened (configurable).
+
+- [b]Enforces your chosen mod policy[/b] in Nightmare Mode games: No Mods, QoL Mods, Curated Mods, or All Mods.
+
+- [b]Degrades gracefully[/b]. Nightmare Mode games can still be played if Nightmare Mode is uninstalled.
+
+- [b]Doesn't alter game rules or mechanics[/b]. Nightmare Mode doesn't introduce or rely on anything that isn't present in the "vanilla" version of the game.
+
+- [b]Free and open source[/b]. Sources are available on [url=https://github.com/hacksalot/NightmareMode]GitHub[/url].

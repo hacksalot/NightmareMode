@@ -1,0 +1,10 @@
+# It is pitch black. You are likely to be eaten by a grue.
+*.suo
+*.dll
+src/packages
+obj/
+bin/
+Debug/
+Release/
+assets/dupe_freakout.mp4
+assets/dupe_freakout.gif

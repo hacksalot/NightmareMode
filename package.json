@@ -1,0 +1,29 @@
+{
+   "name": "nightmaremode",
+   "version": "1.0.0",
+   "private": true,
+   "description": "A plugin for veteran Oxygen Not Included players.",
+   "main": "Controller.cs",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/hacksalot/NightmareMode.git"
+   },
+   "keywords": [
+      "Oxygen",
+      "Not",
+      "Included",
+      "mod",
+      "C#",
+      "Unity",
+      "Harmony"
+   ],
+   "author": "James M. Devlin <hacksalot@indevious.com> (https://indevious.com)",
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/hacksalot/NightmareMode/issues"
+   },
+   "homepage": "https://github.com/hacksalot/NightmareMode#readme"
+}
