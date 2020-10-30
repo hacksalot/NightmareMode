@@ -46,7 +46,7 @@ namespace NightmareMode.Core
          SaveOnDeath = true;
          SaveOnExit = true;
          SaveOnThreat = true;
-         SingleSaveFile = true;
+         SingleSaveFile = false;
          PreventSaveAs = true;
          HidePreviousSaves = true;
          ModHandling = ModPolicy.Curated;
