@@ -53,7 +53,7 @@ namespace NightmareMode.Patches
             parent = __instance.gameObject;
             var activeModObjects = Global.Instance.modManager.mods.Where(m => m.enabled);
             if( Options.Current.ModHandling == Regimen.ModPolicy.ProhibitAll && activeModObjects.Count() > 1 ) {
-               Controller.MessageBox( NMStrings.MODS_ARE_PROHIBITED, "NIGHTMARE MODE - PROHIBITED MODS", () => { }, null, parent ); ;
+               Controller.MessageBox( NMStrings.MODS_ARE_PROHIBITED, NMStrings.TITLE_PROHIBITED_MODS, () => { }, null, parent ); ;
                return false;
             }
 
@@ -64,7 +64,7 @@ namespace NightmareMode.Patches
                if( res.HasUnknown || res.NetCost != 0 ) {
                   var bad = res.KnownMods.Where( m => m.Value.Cost != 0 ).Select( m => m.Value.Title ).ToList();
                   bad.AddRange( res.UnknownMods.Select( u => u.Value.Title ) );
-                  Controller.MessageBox( string.Format( NMStrings.QOL_MODS_ONLY, string.Join( "\n", bad ) ), "NIGHTMARE MODE - PROHIBITED MODS", () => { }, null, parent ); ;
+                  Controller.MessageBox( string.Format( NMStrings.QOL_MODS_ONLY, string.Join( "\n", bad ) ), NMStrings.TITLE_PROHIBITED_MODS, () => { }, null, parent ); ;
                   return false;
                }
             }
@@ -73,7 +73,7 @@ namespace NightmareMode.Patches
                if( res.HasUnknown ) {
                   string offendingMods = string.Join("\n", res.UnknownMods.Select(m => m.Value.Title));
                   string msg = string.Format(NMStrings.WARN_UNKNOWN_MODS, offendingMods);
-                  Controller.MessageBox( msg, "NIGHTMARE MODE - UNKNOWN MODS", () => { }, null, parent );
+                  Controller.MessageBox( msg, NMStrings.TITLE_UNKNOWN_MODS, () => { }, null, parent );
                   return false;
                }
             }
@@ -86,8 +86,8 @@ namespace NightmareMode.Patches
             go = UI.OptionsDialog.Init(
                Options.Current,
                __instance.gameObject.transform.parent.gameObject,
-               "Specify Nightmare Mode settings for this colony...if you dare.",
-               "Let the nightmare begin",
+               NMStrings.OPTIONS_HEADER_FLOW_MSG,
+               NMStrings.BEGIN_NIGHTMARE,
                ( action ) => {
                   callback( action, go );
                }

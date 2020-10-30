@@ -40,12 +40,12 @@ namespace NightmareMode.UI
          _onClose = myOnClose;
          // Create the dialog along with two buttons.
          var pDialog = new PDialog("ModOptions") {
-            Title = "Nightmare Mode Settings", Size = new Vector2(320f,200f), SortKey = 150.0f,
+            Title = NMStrings.NIGHTMARE_MODE_OPTIONS, Size = new Vector2(320f,200f), SortKey = 150.0f,
             DialogBackColor = PUITuning.Colors.OptionsBackground,
             Parent = parent, DialogClosed = OnClose, MaxSize = new Vector2(640f,480f),
             RoundToNearestEven = true
          }
-            .AddButton("ok", okBtnText ?? STRINGS.UI.CONFIRMDIALOG.OK, "Apply these options and start your colony!", PUITuning.Colors.ButtonPinkStyle)
+            .AddButton("ok", okBtnText ?? STRINGS.UI.CONFIRMDIALOG.OK, NMStrings.LAUNCH_NEW_COLONY_TOOLTIP, PUITuning.Colors.ButtonPinkStyle)
             .AddButton(PDialog.DIALOG_KEY_CLOSE, STRINGS.UI.CONFIRMDIALOG.CANCEL, PUIStrings.TOOLTIP_CANCEL, PUITuning.Colors.ButtonBlueStyle);
 
          var body = pDialog.Body;
@@ -85,7 +85,7 @@ namespace NightmareMode.UI
             topPanel.AddRow( new GridRowSpec() );
 
             topPanel.AddChild( new PLabel( "Label" ) {
-               Text = headerMsg ?? "Default setttings for Nightmare Mode games. You can adjust these here\n or when you begin a new Nightmare Mode colony.",
+               Text = headerMsg ?? NMStrings.OPTIONS_HEADER_MSG,
                TextStyle = PUITuning.Fonts.TextLightStyle,
                TextAlignment = TextAnchor.UpperLeft,
                ToolTip = "",
@@ -126,7 +126,7 @@ namespace NightmareMode.UI
          modsPanel.AddRow( new GridRowSpec() );
          modsPanel.AddRow( new GridRowSpec() );
          modsPanel.AddChild( new PLabel( "Label" ) {
-            Text = "Modding Policy", ToolTip = "",
+            Text = NMStrings.LABEL_MOD_POLICY, ToolTip = "",
             //TextStyle = PUITuning.Fonts.TextLightStyle
          }, new GridComponentSpec( 0, 0 ) {
             Margin = margin, Alignment = TextAnchor.MiddleLeft
@@ -155,52 +155,52 @@ namespace NightmareMode.UI
          row = 0;
 
          rightPanel.AddChild( new PLabel( "Label" ) {
-            Text = "Save/Load Policy", ToolTip = "",
+            Text = NMStrings.LABEL_SAVELOAD_POLICY, ToolTip = "",
             //TextStyle = PUITuning.Fonts.TextLightStyle
          }, new GridComponentSpec( row++, 0 ) {
             Margin = margin, Alignment = TextAnchor.MiddleLeft
          } );
 
-         PCheckBox chkSingleSave = CreateCheck( "chkUseSingleSave", "Use a single save file", NMStrings.SINGLE_SAVE_FILE_TOOLTIP, out GameObject goSingleSave, _rules.SingleSaveFile );
+         PCheckBox chkSingleSave = CreateCheck( "chkUseSingleSave", NMStrings.OPTIONS_SINGLE_SAVE, NMStrings.SINGLE_SAVE_FILE_TOOLTIP, out GameObject goSingleSave, _rules.SingleSaveFile );
          rightPanel.AddChild( chkSingleSave, new GridComponentSpec( row++, 0 ) { Alignment = TextAnchor.UpperLeft, Margin = smallMargin } );
 
-         PCheckBox chkHidePrevious = CreateCheck( "chkHidePreviousSaves", "Hide previous saves on load", NMStrings.HIDE_EARLIER_SAVES_TOOLTIP, out GameObject goHidePrevious, _rules.HidePreviousSaves );
+         PCheckBox chkHidePrevious = CreateCheck( "chkHidePreviousSaves", NMStrings.OPTIONS_HIDE_PREVIOUS, NMStrings.HIDE_EARLIER_SAVES_TOOLTIP, out GameObject goHidePrevious, _rules.HidePreviousSaves );
          rightPanel.AddChild( chkHidePrevious, new GridComponentSpec( row++, 0 ) { Alignment = TextAnchor.UpperLeft, Margin = smallMargin } );
 
-         PCheckBox chkPreventSaveAs = CreateCheck( "chkPreventSaveAs", "Disable the 'Save As' button", NMStrings.PREVENT_SAVEAS_TOOLTIP, out GameObject goPreventSaveAs, _rules.PreventSaveAs );
+         PCheckBox chkPreventSaveAs = CreateCheck( "chkPreventSaveAs", NMStrings.OPTIONS_DISABLE_SAVEAS, NMStrings.PREVENT_SAVEAS_TOOLTIP, out GameObject goPreventSaveAs, _rules.PreventSaveAs );
          rightPanel.AddChild( chkPreventSaveAs, new GridComponentSpec( row++, 0 ) { Alignment = TextAnchor.UpperLeft, Margin = smallMargin } );
 
-         PCheckBox chkSaveOnExit = CreateCheck( "chkSaveOnExit", "Save on exit", NMStrings.SAVE_ON_EXIT_TOOLTIP, out GameObject goSaveOnExit, _rules.SaveOnExit );
+         PCheckBox chkSaveOnExit = CreateCheck( "chkSaveOnExit", NMStrings.OPTIONS_SAVE_ON_EXIT, NMStrings.SAVE_ON_EXIT_TOOLTIP, out GameObject goSaveOnExit, _rules.SaveOnExit );
          rightPanel.AddChild( chkSaveOnExit, new GridComponentSpec( row++, 0 ) { Alignment = TextAnchor.UpperLeft, Margin = smallMargin } );
 
-         PCheckBox chkSaveOnDeath = CreateCheck( "chkSaveOnDeath", "Save on death", NMStrings.SAVE_ON_DEATH_TOOPLTIP, out GameObject goSaveOnDeath, _rules.SaveOnDeath );
+         PCheckBox chkSaveOnDeath = CreateCheck( "chkSaveOnDeath", NMStrings.OPTIONS_SAVE_ON_DEATH, NMStrings.SAVE_ON_DEATH_TOOPLTIP, out GameObject goSaveOnDeath, _rules.SaveOnDeath );
          rightPanel.AddChild( chkSaveOnDeath, new GridComponentSpec( row++, 0 ) { Alignment = TextAnchor.UpperLeft, Margin = smallMargin } );
 
-         PCheckBox chkSaveOnThreat = CreateCheck( "chkSaveOnThreat", "Save on threat", NMStrings.SAVE_ON_THREAT_TOOLTIP, out GameObject goSaveOnThreat, _rules.SaveOnThreat );
+         PCheckBox chkSaveOnThreat = CreateCheck( "chkSaveOnThreat", NMStrings.OPTIONS_SAVE_ON_THREAT, NMStrings.SAVE_ON_THREAT_TOOLTIP, out GameObject goSaveOnThreat, _rules.SaveOnThreat );
          rightPanel.AddChild( chkSaveOnThreat, new GridComponentSpec( row++, 0 ) { Alignment = TextAnchor.UpperLeft, Margin = smallMargin } );
 
          row = 0;
 
          basicPanel.AddChild( new PLabel( "Label" ) {
-            Text = "Basic Options", ToolTip = "",
+            Text = NMStrings.LABEL_BASIC_OPTIONS, ToolTip = "",
          }, new GridComponentSpec( row++, 0 ) {
             Margin = margin, Alignment = TextAnchor.MiddleLeft
          } );
 
-         PCheckBox chkCertifyGame = CreateCheck( "chkCertifyGame", "Certify this game", "", out GameObject outObjCert, _rules.Certify );
+         PCheckBox chkCertifyGame = CreateCheck( "chkCertifyGame", NMStrings.OPTIONS_CERTIFY, "", out GameObject outObjCert, _rules.Certify );
          basicPanel.AddChild( chkCertifyGame, new GridComponentSpec( row++, 0 ) { Alignment = TextAnchor.UpperLeft, Margin = smallMargin } );
 
-         PCheckBox chkDisableSandbox = CreateCheck( "chkDisableSandbox", "Disable Sandbox mode", NMStrings.DISABLE_SANDBOX_TOOLTIP, out GameObject outObj7, _rules.ProhibitSandbox );
+         PCheckBox chkDisableSandbox = CreateCheck( "chkDisableSandbox", NMStrings.OPTIONS_DISABLE_SANDBOX, NMStrings.DISABLE_SANDBOX_TOOLTIP, out GameObject outObj7, _rules.ProhibitSandbox );
          basicPanel.AddChild( chkDisableSandbox, new GridComponentSpec( row++, 0 ) { Alignment = TextAnchor.UpperLeft, Margin = smallMargin } );
 
-         PCheckBox chkDisableDebug = CreateCheck( "chkDisableDebug", "Disable Debug mode", NMStrings.DISABLE_DEBUG_TOOLTIP, out GameObject outObj8, _rules.ProhibitDebug );
+         PCheckBox chkDisableDebug = CreateCheck( "chkDisableDebug", NMStrings.OPTIONS_DISABLE_DEBUG, NMStrings.DISABLE_DEBUG_TOOLTIP, out GameObject outObj8, _rules.ProhibitDebug );
          basicPanel.AddChild( chkDisableDebug, new GridComponentSpec( row++, 0 ) { Alignment = TextAnchor.UpperLeft, Margin = smallMargin } );
 
          List<SelectableOption> opts = new List<SelectableOption>();
-         opts.Add( new SelectableOption( "Prohibit all mods", NMStrings.MOD_POLICY_PROHIBIT_TOOLTIP, Regimen.ModPolicy.ProhibitAll ) );
-         opts.Add( new SelectableOption( "Allow QoL mods", NMStrings.MOD_POLICY_QOL_TOOLTIP, Regimen.ModPolicy.QoL ) );
-         opts.Add( new SelectableOption( "Allow curated mods", NMStrings.MOD_POLICY_CURATED_TOOLTIP, Regimen.ModPolicy.Curated ) );
-         opts.Add( new SelectableOption( "Allow all mods", NMStrings.MOD_POLICY_ALLOW_TOOLTIP, Regimen.ModPolicy.AllowAll ) );
+         opts.Add( new SelectableOption( NMStrings.OPTIONS_MODS_PROHIBIT, NMStrings.MOD_POLICY_PROHIBIT_TOOLTIP, Regimen.ModPolicy.ProhibitAll ) );
+         opts.Add( new SelectableOption( NMStrings.OPTIONS_MODS_QOL, NMStrings.MOD_POLICY_QOL_TOOLTIP, Regimen.ModPolicy.QoL ) );
+         opts.Add( new SelectableOption( NMStrings.OPTIONS_MODS_CURATED, NMStrings.MOD_POLICY_CURATED_TOOLTIP, Regimen.ModPolicy.Curated ) );
+         opts.Add( new SelectableOption( NMStrings.OPTIONS_MODS_ALL, NMStrings.MOD_POLICY_ALLOW_TOOLTIP, Regimen.ModPolicy.AllowAll ) );
 
          SelectableOption sel = opts.Find(i => (Regimen.ModPolicy) i.Value == r.ModHandling);
 
