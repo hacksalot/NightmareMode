@@ -115,7 +115,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"$(ILMergeConsolePath)" /ndebug /out:$(TargetName)M.dll $(TargetName).dll PLib.dll  /targetplatform:v4,C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+    <PostBuildEvent>echo Performing ILMerge step...
+"$(ILMergeConsolePath)" /ndebug /out:$(TargetName)M.dll $(TargetName).dll PLib.dll  /targetplatform:v4,C:\Windows\Microsoft.NET\Framework64\v4.0.30319
 echo Copying $(TargetFileName) to mod folder...
 copy /Y $(TargetDir)$(TargetName)M.dll "$(ONI_MODS_FOLDER)\Dev\NightmareMode\$(TargetName)M.dll"
 echo Copying $(OutDir)known-mods.txt to mod folder...
