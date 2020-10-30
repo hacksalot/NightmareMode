@@ -117,9 +117,9 @@
   <PropertyGroup>
     <PostBuildEvent>"$(ILMergeConsolePath)" /ndebug /out:$(TargetName)M.dll $(TargetName).dll PLib.dll  /targetplatform:v4,C:\Windows\Microsoft.NET\Framework64\v4.0.30319
 echo Copying $(TargetFileName) to mod folder...
-copy /Y $(TargetDir)$(TargetName)M.dll "$(ONI_MODS_FOLDER)\Dev\Nightmare Mode\$(TargetName)M.dll"
+copy /Y $(TargetDir)$(TargetName)M.dll "$(ONI_MODS_FOLDER)\Dev\NightmareMode\$(TargetName)M.dll"
 echo Copying $(OutDir)known-mods.txt to mod folder...
-copy /Y $(TargetDir)known-mods.txt "$(ONI_MODS_FOLDER)\Dev\Nightmare Mode\known-mods.txt"
+copy /Y $(TargetDir)known-mods.txt "$(ONI_MODS_FOLDER)\Dev\NightmareMode\known-mods.txt"
 </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
