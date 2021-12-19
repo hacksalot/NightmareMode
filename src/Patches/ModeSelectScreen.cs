@@ -80,8 +80,6 @@ namespace NightmareMode.Patches
 
          private static void DoOriginal( ModeSelectScreen inst ) {
             inst.Deactivate();
-            //this.LoadWorldsData();
-            Traverse.Create( inst ).Method( "LoadWorldsData" ).GetValue( null );
             CustomGameSettings.Instance.SetNosweatDefaults();
             //this.NavigateForward();
             Traverse.Create( inst ).Method( "NavigateForward" ).GetValue( null );
