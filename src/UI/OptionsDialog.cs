@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 using System.Collections.Generic;
 using UnityEngine;
+using PeterHan.PLib.Core;
 using PeterHan.PLib.UI;
 using NightmareMode.Core;
 
@@ -46,7 +47,7 @@ namespace NightmareMode.UI
             RoundToNearestEven = true
          }
             .AddButton("ok", okBtnText ?? STRINGS.UI.CONFIRMDIALOG.OK, NMStrings.LAUNCH_NEW_COLONY_TOOLTIP, PUITuning.Colors.ButtonPinkStyle)
-            .AddButton(PDialog.DIALOG_KEY_CLOSE, STRINGS.UI.CONFIRMDIALOG.CANCEL, PUIStrings.TOOLTIP_CANCEL, PUITuning.Colors.ButtonBlueStyle);
+            .AddButton(PDialog.DIALOG_KEY_CLOSE, STRINGS.UI.CONFIRMDIALOG.CANCEL, PLibStrings.TOOLTIP_CANCEL, PUITuning.Colors.ButtonBlueStyle);
 
          var body = pDialog.Body;
          int CATEGORY_MARGIN = 8;
