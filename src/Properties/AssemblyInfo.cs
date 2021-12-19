@@ -1,7 +1,7 @@
 ﻿/**
 The MIT License
 
-Copyright (c) 2020 James M. Devlin
+Copyright (c) 2020-2022 James Devlin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,9 +34,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("NightmareMode")]
-[assembly: AssemblyCopyright("Copyright © 2020 James M. Devlin")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: AssemblyCopyright( "Copyright © 2020-2022 James Devlin" )]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
