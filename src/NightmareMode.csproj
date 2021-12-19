@@ -107,12 +107,24 @@
     <Compile Include="Patches\SaveLoader.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\package.json">
+      <Link>package.json</Link>
+    </None>
+    <None Include="..\README.md">
+      <Link>README.md</Link>
+    </None>
     <None Include="app.config" />
     <None Include="mod.yaml" />
     <None Include="mod_info.yaml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\.gitignore">
+      <Link>.gitignore</Link>
+    </Content>
+    <Content Include="..\LICENSE.txt">
+      <Link>LICENSE.txt</Link>
+    </Content>
     <Content Include="known-mods.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
