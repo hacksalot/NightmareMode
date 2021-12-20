@@ -26,21 +26,25 @@ using UnityEngine;
 using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using HarmonyLib;
 
 namespace NightmareMode.Core
 {
-   internal class Controller
+   internal class Controller : KMod.UserMod2
    {
       #region Public Properties
       public static bool IsEnforcing { get; set; } = false;
       public static string ModeIconPath { get; private set; }
       public static string OptionsFilePath { get; private set; }
       public static string ModsFilePath { get; private set; }
+      public static string NightmareRegistryPath { get; private set; }
       public static string SaveFilePath { get; private set; }
       public static System.DateTime LastSaved { get; private set; }
       public static System.TimeSpan ElapsedLastSave { get => System.DateTime.UtcNow - LastSaved; }
       public static bool InNightmareFlow { get; set; } = false;
       public static bool HasLoaded { get; set; } = false;
+      public static Dictionary<string, Regimen> ManagedGames { get; set; } = new Dictionary<string, Regimen>();
 
       #endregion Public Properties
 
@@ -50,11 +54,13 @@ namespace NightmareMode.Core
          string folder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
          ModeIconPath = Path.Combine( folder, "dupe_freakout.png" );
          OptionsFilePath = Path.Combine( folder, "options.json" );
+         NightmareRegistryPath = Path.Combine( folder, "nightmares.json" );
          ModsFilePath = Path.Combine( folder, "known-mods.txt" );
          LastSaved = System.DateTime.UtcNow;
       }
 
-      public static void OnLoad() {
+      public override void OnLoad( Harmony h ) {
+         base.OnLoad( h );
          Log.Out( "Controller.OnLoad()" );
 
          // Initializing PLib is not necessary in this case. See Note [1].
@@ -65,9 +71,10 @@ namespace NightmareMode.Core
             Options.Default = JsonConvert.DeserializeObject<Options>( opts );
          }
 
-         string nightmareSaveFolder = Path.Combine(SaveLoader.GetSavePrefixAndCreateFolder(), "nightmare");
-         if( !Directory.Exists( nightmareSaveFolder ) )
-            Directory.CreateDirectory( nightmareSaveFolder );
+         if( File.Exists( NightmareRegistryPath ) ) {
+            string opts = File.ReadAllText( NightmareRegistryPath );
+            ManagedGames = JsonConvert.DeserializeObject<Dictionary<string, Regimen>>( opts );
+         }
       }
 
       #endregion Initialization
@@ -76,8 +83,10 @@ namespace NightmareMode.Core
 
       public static void OnLoadGame( string filePath ) {
          Log.Out( "Controller.OnLoadGame({0})", filePath );
+         IsEnforcing = false;
 
-         Options.Current = ONISaveGame.GetNightmareHint( filePath );
+         Regimen r = null;
+         Options.Current = ManagedGames.TryGetValue( filePath, out r ) ? r : null;
          IsEnforcing = Options.Current != null;
          Log.Out( "Controller.OnLoadGame(IsEnforcing={0})", IsEnforcing );
          if( !IsEnforcing ) return;
@@ -110,27 +119,6 @@ namespace NightmareMode.Core
 
          if( Options.Current.SingleSaveFile ) {
             isAutoSave = false;
-            filename = Path.Combine(
-               SaveLoader.GetSavePrefixAndCreateFolder(),
-               "nightmare",
-               SaveGame.Instance.BaseName + ".sav"
-            );
-         }
-         else if( !string.IsNullOrEmpty(Options.Default.NightmareSaveFolder) ) {
-            string fname = Path.GetFileName( filename );
-            if(!Path.IsPathRooted(Options.Default.NightmareSaveFolder )) {
-               string saveFolder = Path.GetDirectoryName( filename );
-               if(!saveFolder.EndsWith(Options.Default.NightmareSaveFolder )) {
-                  filename = Path.Combine( saveFolder, Options.Default.NightmareSaveFolder, fname );
-               }
-               else {
-                  filename = Path.Combine( saveFolder, fname );
-               }
-               
-            }
-            else {
-               filename = Path.Combine( Options.Default.NightmareSaveFolder, fname );
-            }
          }
 
          if( IsNewGame )
@@ -145,7 +133,12 @@ namespace NightmareMode.Core
          Log.Out( "Controller.OnSaveGamePost({0})", filePath );
          if(IsEnforcing) { 
             LastSaved = System.DateTime.Now;
-            ONISaveGame.SetNightmareHint( filePath, Options.Current );
+            Regimen reg = null;
+            if( ManagedGames.TryGetValue( filePath, out reg ) )
+               ManagedGames [filePath] = Options.Current;
+            else
+               ManagedGames.Add( filePath, Options.Current );
+            File.WriteAllText( Controller.NightmareRegistryPath, JsonConvert.SerializeObject( ManagedGames ) );
          }
       }
 
@@ -154,8 +147,7 @@ namespace NightmareMode.Core
          IsNewGame = true;
          IsEnforcing = true;
          HasLoaded = true;
-         SaveFilePath = Path.Combine( SaveLoader.GetSavePrefixAndCreateFolder(),
-            "nightmare", SaveGame.Instance.BaseName + ".sav" );
+         SaveFilePath = filename;
       }
 
       #endregion Game Lifecycle

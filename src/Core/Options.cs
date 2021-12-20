@@ -22,12 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+using System.Collections.Generic;
+
 namespace NightmareMode.Core
 {
-   class Options : Regimen
+   internal class Options : Regimen
    {
-      public bool EnableLogging { get; set; } = false;
-      public string NightmareSaveFolder { get; set; } = "nightmare";
+      public bool EnableLogging { get; set; } = true;
       public static Options Default { get; set; } = new Options();
       public static Regimen Current { get; set; } = new Regimen();
    }
