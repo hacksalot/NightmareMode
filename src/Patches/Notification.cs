@@ -35,7 +35,7 @@ namespace NightmareMode.Patches
       [HarmonyPatch( typeof( Notification ), "Notification" )]
       [HarmonyPatch( MethodType.Constructor )]
       [HarmonyPatch( new Type [ ] {
-         typeof(string), typeof(NotificationType), typeof(HashedString), typeof(Func<List<Notification>, object, string>),
+         typeof(string), typeof(NotificationType), typeof(Func<List<Notification>, object, string>),
          typeof(object), typeof(bool), typeof(float), typeof(Notification.ClickCallback),
          typeof(object), typeof(Transform), typeof(bool)
       } )]
@@ -44,7 +44,6 @@ namespace NightmareMode.Patches
          private static void Postfix(
            string title,
            NotificationType type,
-           HashedString group,
            Func<List<Notification>, object, string> tooltip,
            object tooltip_data,
            bool expires,
