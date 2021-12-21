@@ -85,8 +85,10 @@ namespace NightmareMode.Core
          Log.Out( "Controller.OnLoadGame({0})", filePath );
          IsEnforcing = false;
 
+         Tuple<SaveGame.Header, SaveGame.GameInfo> info = SaveGame.GetFileInfo( filePath );
+         string colonyGuid = info.second.colonyGuid.ToString();
          Regimen r = null;
-         Options.Current = ManagedGames.TryGetValue( filePath, out r ) ? r : null;
+         Options.Current = ManagedGames.TryGetValue( colonyGuid, out r ) ? r : null;
          IsEnforcing = Options.Current != null;
          Log.Out( "Controller.OnLoadGame(IsEnforcing={0})", IsEnforcing );
          if( !IsEnforcing ) return;
@@ -132,12 +134,14 @@ namespace NightmareMode.Core
       public static void OnSaveGamePost( string filePath ) {
          Log.Out( "Controller.OnSaveGamePost({0})", filePath );
          if(IsEnforcing) { 
+            Tuple<SaveGame.Header, SaveGame.GameInfo> info = SaveGame.GetFileInfo( filePath );
+            string colonyGuid = info.second.colonyGuid.ToString();
             LastSaved = System.DateTime.Now;
             Regimen reg = null;
-            if( ManagedGames.TryGetValue( filePath, out reg ) )
-               ManagedGames [filePath] = Options.Current;
+            if( ManagedGames.TryGetValue( colonyGuid, out reg ) )
+               ManagedGames [colonyGuid] = Options.Current;
             else
-               ManagedGames.Add( filePath, Options.Current );
+               ManagedGames.Add( colonyGuid, Options.Current );
             File.WriteAllText( Controller.NightmareRegistryPath, JsonConvert.SerializeObject( ManagedGames ) );
          }
       }
