@@ -52,6 +52,12 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PLibCore">
+      <HintPath>..\..\ONIMods\PLibCore\bin\Mergedown\Release\net471\PLibCore.dll</HintPath>
+    </Reference>
+    <Reference Include="PLibUI">
+      <HintPath>..\..\ONIMods\PLibUI\bin\Mergedown\Release\net471\PLibUI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Unity.TextMeshPro">
@@ -131,16 +137,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ONIMods\PLib\PLib.csproj">
-      <Project>{81393630-2793-4277-bd6d-72044b143d50}</Project>
-      <Name>PLib</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo Performing ILMerge step...
-"$(ILMergeConsolePath)" /ndebug /out:$(TargetName)M.dll $(TargetName).dll PLib.dll  /targetplatform:v4,C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+"$(ILMergeConsolePath)" /ndebug /out:$(TargetName)M.dll $(TargetName).dll PLibCore.dll PLibUI.dll  /targetplatform:v4,C:\Windows\Microsoft.NET\Framework64\v4.0.30319
 echo Copying $(TargetFileName) to mod folder...
 copy /Y $(TargetDir)$(TargetName)M.dll "$(ONI_MODS_FOLDER)\Dev\NightmareMode\$(TargetName)M.dll"
 echo Copying $(OutDir)known-mods.txt to mod folder...
