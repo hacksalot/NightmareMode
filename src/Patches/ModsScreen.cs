@@ -64,10 +64,13 @@ namespace NightmareMode.Patches
          }
       }
 
+#pragma warning disable 649
       private struct DisplayedMod
       {
          public RectTransform rect_transform;
          public int mod_index;
       }
+#pragma warning restore 649
+
    }
 }
