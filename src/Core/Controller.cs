@@ -121,6 +121,10 @@ namespace NightmareMode.Core
 
          if( Options.Current.SingleSaveFile ) {
             isAutoSave = false;
+            filename = Path.Combine(
+               SaveLoader.GetActiveSaveColonyFolder(),
+               SaveGame.Instance.BaseName + ".sav"
+            );
          }
 
          if( IsNewGame )
